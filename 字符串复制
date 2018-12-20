@@ -1,0 +1,51 @@
+题目描述
+编写copy(char *dest,char *src)函数，实现将src所指字符串的非数字字符复制到dest所指字符串中。
+
+输入
+每行输入一字符串（串长<=200）
+
+ 
+
+输出
+对应输出非数字字符
+
+样例输入
+abc123
+efgssg3
+
+样例输出
+abc
+efgssg
+
+#include <stdio.h>
+int main(){
+	char str[100][200];
+	memset(str,0,sizeof(str));
+	int i,j,cnt;
+	for(j=0;j<100;j++){
+		char array[200];
+		memset(array,0,sizeof(array));
+		gets(array); 	
+		if(array[0]==NULL) break;
+		cnt=0;
+		for(i=0;i<200;i++){		
+			if(array[i]==0) break;
+			if(array[i]>=48 && array[i]<=57){
+			}else{
+				str[j][cnt]=array[i];
+				cnt++;
+			}
+		}
+	}
+	for(i=0;i<100;i++){
+		if(str[i][0]==0) break;
+		for(j=0;j<200;j++){
+			if(str[i][j]==0) break;
+			printf("%c",str[i][j]);
+		}
+		printf("\n");
+	}
+	return 0;
+} 
+
+
