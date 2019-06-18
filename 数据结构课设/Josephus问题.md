@@ -113,24 +113,39 @@ void printnums(int nums[],int n)
 }
 int round(int n)
 {
-	int i,live=n;
+	int i,j,live=n;
 	int nums[1000]={1};
+	if(n==1) return 1;
 	for(i=1;i<=n;i++) nums[i]=1;
 	i=1;
+	j=0;
 	while(live>1)
 	{
 		if(nums[i]==1)
 		{
-			if(i%2==0)
+			j++;
+			if(j%2==0)
 			{
 				nums[i]=0;
 				live--;
 			}
-			i++;if(i>n) i=1;
-			printnums(nums,n);
-		}else{while(nums[++i]==1);}
+			i++;
+			//printnums(nums,n);
+		}else
+		{
+			while(true)
+			{
+				i++;
+				if(i>n) i=1;
+				if(nums[i]==1) break;
+			}
+		}
 	}
-	return 1;
+	for(int i=1;i<=n;i++)
+	{
+		if(nums[i]==1)
+			return i;
+	}
 }
 
 int main()
@@ -144,12 +159,9 @@ int main()
 }
 
 ```
+这里使用数组的方式也可以解决这个问题。
 
-
-
-
-
-
+原理我这里就不多解释了。
 
 
 
