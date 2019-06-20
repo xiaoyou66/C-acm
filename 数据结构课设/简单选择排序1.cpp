@@ -68,6 +68,54 @@ int main()
 }
 
 
+/************************
+自己写的代码
+
+简单选择排序就是每一趟找出最大或者最小的那一个元素，然后和第i（第几趟i就为几）个元素进行交换
+
+************************/
+
+#include <iostream>
+using namespace std;
+#define MAXSIZE 1001
+
+typedef struct
+{
+	int r[MAXSIZE];
+	int length;
+}sqLIst;
+
+void selectSort(sqLIst &L)
+{
+	int i,j,k,t;
+	for(i=1;i<=L.length;i++)
+	{
+		k=i;
+		for(j=i+1;j<=L.length;j++)
+			if(L.r[k]>L.r[j])
+				k=j;		
+			t=L.r[i];
+			L.r[i]=L.r[k];	
+			L.r[k]=t;		
+	}
+}
+
+int main()
+{
+	sqLIst *L=new sqLIst;
+    int n,i;
+    scanf("%d", &n);
+	L->length=n;
+    for (i=1; i<=n; i++) cin>>L->r[i];
+	selectSort(*L);
+	for (i=1; i<=n; i++) cout<<L->r[i]<<" ";
+	cout<<endl;
+    system("PAUSE");
+	return 0;
+    //free(a);
+}
+
+
 
 
 
