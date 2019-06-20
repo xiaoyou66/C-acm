@@ -1,4 +1,4 @@
-/************************************
++/************************************
 题目描述
 在本题中，读入一串整数，将其使用堆排序的方法从小到大排序，并输出。 
 堆排序是一种利用堆结构进行排序的方法，它只需要一个记录大小的辅助空间，每个待排序的记录仅需要占用一个存储空间。 
@@ -86,8 +86,85 @@ int main()
     //free(a);
 }
 
+/****************************************
+算法介绍：
+
+堆其实是一个 完全二叉树，每一个根节点都大于叶子节点
+
+我们算法的第一个目的就是要把我们的无序的元素变成堆。这个过程叫建初堆
 
 
+
+*******************************/
+#include <iostream>
+using namespace std;
+#define MAXSIZE 100000
+
+typedef struct
+{
+	int r[MAXSIZE];
+	int length;
+}sqLIst;
+
+void printheap(sqLIst &L)
+{
+	for (int i=1; i<=10; i++) cout<<L.r[i]<<" ";
+	cout<<endl;
+}
+
+
+void HeapAdjust(sqLIst &L,int s,int m)
+{
+	int temp,j;
+	temp=L.r[s];
+	for(j=2*s;j<=m;j*=2)
+	{
+		if(j<m && L.r[j]<L.r[j+1]) ++j;
+		if(temp>=L.r[j]) break;
+		L.r[s]=L.r[j];
+		s=j;
+	}
+	L.r[s]=temp;
+}
+
+void creatHeap(sqLIst &L)
+{
+	int i,n;
+	n=L.length;
+	for(i=n/2;i>0;--i)
+		HeapAdjust(L,i,n);
+}
+
+void heapSort(sqLIst &L)
+{
+	int i,x;
+	creatHeap(L);
+	printheap(L);
+	for(i=L.length;i>1;i--)
+	{
+		x=L.r[1];
+		L.r[1]=L.r[i];
+		L.r[i]=x;
+		HeapAdjust(L,1,i-1);
+	}
+	
+}
+
+
+
+
+int main()
+{
+	sqLIst *L=new sqLIst;
+    int n,i;
+    scanf("%d", &n);
+	L->length=n;
+    for (i=1; i<=n; i++) cin>>L->r[i];
+	heapSort(*L);
+    system("PAUSE");
+	return 0;
+    //free(a);
+}
 
 
 
