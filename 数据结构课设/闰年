@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+
+typedef struct date
+{
+	int year;
+	int moth;
+	int day;
+
+}DATE;
+
+int main()
+{
+	DATE s={0,0,0};
+    int isnun=0,totalday=0;
+	int monthday[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+	scanf("%d %d %d",&s.year,&s.moth,&s.day);
+	if((s.year%4==0 && s.year%100!=0) || s.year%400==0) isnun=1;
+	if(isnun) monthday[1]=29;
+	for(int i=0;i<s.moth-1;i++)
+		totalday+=monthday[i];
+	totalday+=s.day;
+	cout<<totalday;
+	//system("pause");
+}
