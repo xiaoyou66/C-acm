@@ -6,13 +6,13 @@ using namespace std;
 typedef struct BiTNode
 {
 	
-	char data;
+	int data;
 	struct BiTNode *lchild, *rchild;
 }BiTNode,*BiTree;
 
-char front[102]={0},frontp=-1;
-char cent[102]={0},centp=-1;
-char back[102]={0},backp=-1;
+int front[102]={0},frontp=-1;
+int cent[102]={0},centp=-1;
+int back[102]={0},backp=-1;
 
 typedef struct
 {
@@ -25,15 +25,14 @@ typedef struct
 
 void CreateBitree(BiTree &T)
 {
-	char ch;
-	cin >> ch;
-	if (ch == '0') T = NULL;
+	int ch;
+	cin>>ch; 
+	if (ch == 0) T = NULL;
 	else
 	{
 		T = new  BiTNode;
 		T->data = ch;
 		front[++frontp]=ch;
-		//printf("%c ",ch);
 		CreateBitree(T->lchild);
 		cent[++centp]=ch;
 		CreateBitree(T->rchild);
@@ -45,18 +44,18 @@ int main()
 {
 	BiTree T=new BiTNode;
 	CreateBitree(T);
-	if(front[0]) printf("%c",front[0]); 
+	if(front[0]) printf("%d",front[0]); 
 	int i=0;
-	while(front[++i]) printf(" %c",front[i]);
+	while(front[++i]) printf(" %d",front[i]);
 	cout<<endl;
-	if(cent[0]) printf("%c",cent[0]); 
+	if(cent[0]) printf("%d",cent[0]); 
 	i=0;
-	while(cent[++i]) printf(" %c",cent[i]);
+	while(cent[++i]) printf(" %d",cent[i]);
 	cout<<endl;
 	i=0;
-	if(back[0]) printf("%c",back[0]); 
-	while(back[++i]) printf(" %c",back[i]);
+	if(back[0]) printf("%d",back[0]); 
+	while(back[++i]) printf(" %d",back[i]);
 	cout<<endl;
-	system("pause");
+	//system("pause");
 	return 0;
 }
