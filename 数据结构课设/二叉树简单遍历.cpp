@@ -10,9 +10,9 @@ typedef struct BiTNode
 	struct BiTNode *lchild, *rchild;
 }BiTNode,*BiTree;
 
-
-int cent[100]={0},centp=-1;
-int back[100]={0},backp=-1;
+char front[102]={0},frontp=-1;
+char cent[102]={0},centp=-1;
+char back[102]={0},backp=-1;
 
 typedef struct
 {
@@ -23,7 +23,7 @@ typedef struct
 	int stacksize;
 }sqstack;
 
-void CreateBitree(BiTree  &T)
+void CreateBitree(BiTree &T)
 {
 	char ch;
 	cin >> ch;
@@ -32,36 +32,31 @@ void CreateBitree(BiTree  &T)
 	{
 		T = new  BiTNode;
 		T->data = ch;
+		front[++frontp]=ch;
+		//printf("%c ",ch);
 		CreateBitree(T->lchild);
+		cent[++centp]=ch;
 		CreateBitree(T->rchild);
+		back[++backp]=ch;
 	}
 }
-
-void FrontTraverse(BiTree T)
-{
-	if (T)
-	{
-		cout << T->data << " ";
-		FrontTraverse(T->lchild);
-		cent[++centp]=T->data;
-		FrontTraverse(T->rchild);
-		back[++backp]=T->data;
-	}
-}
-
-
 
 int main()
 {
 	BiTree T=new BiTNode;
 	CreateBitree(T);
-	FrontTraverse(T);
+	if(front[0]) printf("%c",front[0]); 
+	int i=0;
+	while(front[++i]) printf(" %c",front[i]);
 	cout<<endl;
-	int i=-1;
-	while(cent[++i]) cout<<cent[i]-48<<" ";
+	if(cent[0]) printf("%c",cent[0]); 
+	i=0;
+	while(cent[++i]) printf(" %c",cent[i]);
 	cout<<endl;
-	i=-1;
-	while(back[++i]) cout<<back[i]-48<<" ";
-	//system("pause");
+	i=0;
+	if(back[0]) printf("%c",back[0]); 
+	while(back[++i]) printf(" %c",back[i]);
+	cout<<endl;
+	system("pause");
 	return 0;
 }
