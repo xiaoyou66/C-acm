@@ -26,12 +26,11 @@ void cut(SqList &LC)
 	for(i=0;i<LC.length;i++)
 		if(LC.r[i]==LC.r[i+1])
 		{
-			LC.length--;
 			for(j=i;j<LC.length;j++)
 				LC.r[j]=LC.r[j+1];
+			LC.length--;
 		}
 }
-
 
 int main()
 {
